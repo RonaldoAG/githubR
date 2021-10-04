@@ -49,7 +49,11 @@ Evitar avisos, mensajes al ejecutar algunas librerías
 -->
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.align='center',
+                      fig.pos='H')
 ```
 
 
@@ -121,8 +125,34 @@ A través de File>New Project / marker Create a git repository
 use_git()
 ```
 
+Ahora que se tiene un repositorio de Git asociado, veré una pestaña adicional en la parte superior derecha: la pestaña Git. Desde aquí, puedo ver el historial completo de cambios en mi código a lo largo del tiempo.
+```{r, echo=FALSE, out.width = "55%", fig.pos="H", fig.cap="Activación", out.extra='' }
+knitr::include_graphics("fgit.png")
+```
+### Hacer un compromiso y ver más historial
 
+Debes decirle a Git: Hice cambios y quiero que mantengas un registro de ellos. Decirle a Git esto se llama hacer una confirmación, cada uno tiene un mensaje de confirmación, que es útil porque, cuando miras tu historial de código, ves lo que hiciste en cada momento. RStudio tiene una herramienta incorporada para ver su historial de código. Puede hacer clic en cualquier confirmación para ver qué cambió, en relación con la confirmación anterior. Se agregaron líneas en verde; Se eliminaron las líneas en rojo.
 
+ Por ejemplo, crear archivos y hacer modificaciones dentro de ellos, mediante el commit message.
+ 
+```{r, echo=FALSE, out.width = "55%", fig.pos="H", fig.cap="Activación", out.extra='' }
+knitr::include_graphics("ltime.png")
+```
 
+## RStudio y GitHub
 
+Crea un token de acceso personal (PAT) en GitHub usando la función create_github_token() de usethis. Esto le redireccionará al sitio web de GitHub, donde le dará un nombre a su token y lo copiará (¡no lo pierda porque nunca volverá a aparecer!).
+
+```{r, echo=FALSE,eval=FALSE}
+# Personal access tokens
+# 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
+```
+
+debemos almacenarlo para que RStudio pueda acceder a él y conectarse a su cuenta de GitHub. Mediante la función gitcreds_set(), ingresarás tu nombre de usuario de GitHub y el token de acceso personal como tu contraseña (NO tu contraseña de GitHub).
+
+```{r}
+#install.packages("gitcreds")
+library(gitcreds)
+gitcreds_set()
+```
 
