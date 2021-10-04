@@ -1,0 +1,128 @@
+---
+title: 'Google Earth Engine con R'
+author: 'Autor: Ronaldo Anticona Guillen'
+subtitle: 'Manipulación de Modelo Digital de Elevación' 
+# date: 04 marzo 2020
+keywords: 'rgee,hydrology,DEM' 
+output: 
+  html_document:        
+# ver/ocultar los trozos de código  
+    #code_download: true  # si incluimos un botón para bajar el código o no
+    #code_folding: hide   # para mostrar o esconder los chunk de codigo 
+# tabla de contenido
+    #number_sections: yes   # numera los titulos
+    toc: TRUE               # incluye o no el indice
+    toc_float: TRUE         # incluye o no indice flotante
+      #collapsed: false      # que se escondan los tit
+      #smooth_scroll: false  # scroll en TOC
+# formato  estilo    
+    theme: "spacelab"    # especifica el tema Bootstrap
+    highlight: kate      # resaltado de sintaxis
+    #self_contained: false    # salida fichero autocontenido
+# formato de figuras
+    fig_width: 7         # ancho de las figuras por defecto
+    fig_height: 6        # alto de las figuras
+    fig_caption: true    # titulo de figura
+    mainfont: Times New Roman 
+---
+
+<!--
+Justificar
+-->
+
+<div style="text-align: justify">
+
+<!--
+Estilo de caja de contenido
+-->
+<style>
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    z-index: 2;
+    color: cyan;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+</style>
+
+<!--
+Evitar avisos, mensajes al ejecutar algunas librerías
+-->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+
+<!--
+--------------------------------------------------------------------------------------------------
+-->
+# GitHub in R
+
+More: https://rfortherestofus.com/2021/02/how-to-use-git-github-with-r/
+
+\vspace{-1.5cm}
+
+## Conociendo 
+
+Usar Git y GitHub junto con RStudio tiene el poder de revolucionar la forma en que trabaja en R.
+
+* Git es un software de código abierto para el control de versiones . Con Git, puede hacer cosas como ver todas las versiones anteriores del código que haya creado en un proyecto.
+
+* GitHub es el servicio más popular (otros incluyen GitLab y BitBucket ) para colaborar en código usando Git.
+
+Es posible usar Git sin usar GitHub, aunque la mayoría de las personas combinan los dos.
+
+### ¿Por qué debería usar Git y GitHub?
+He visto tres motivaciones principales para que las personas adopten un flujo de trabajo Git / GitHub:
+
+1. **Sirve como respaldo** . Debido a que GitHub tiene una copia de todo el código que tiene localmente, si algo le sucediera a su computadora, aún tendría acceso a su código.
+
+2. **Permite usar el control de versiones**. En lugar de hacer copias de archivos por temor a perder el trabajo, el control de versiones le permite ver lo que hizo en el pasado, todo mientras conserva versiones únicas de los documentos.
+
+3. **Permite trabajar en el mismo proyecto al mismo tiempo que los colaboradores**.  Git y GitHub tienen herramientas integradas que permiten el trabajo asincrónico simultáneo, un beneficio importante para quienes trabajan en equipo.
+
+
+## Configurar Git
+
+More: Happy Git and GitHub for the useR /  https://happygitwithr.com/
+
+### Instalar Git
+
+Instale Git para Windows10 (https://git-scm.com/downloads)
+
+Tenga en cuenta que RStudio para Windows prefiere que Git se instale a continuación C:/Program Files y este parece ser el predeterminado. Esto implica, por ejemplo, que el ejecutable de Git en mi sistema Windows se encuentra en C:/Program Files/Git/bin/git.exe. A menos que tenga razones específicas para lo contrario, siga esta convención.
+
+RStudio debería detectar automáticamente la presencia de Git Bash. Puede inspeccionar e influir en esto directamente a través de Herramientas> Opciones globales> Terminal. Debe reiniciar todas las instancias de RStudio después de instalar Git para Windows (+ Git Bash), para que RStudio detecte automáticamente Git Bash. 
+
+### Configurar Git
+Usar la función edit_git_config() del paquete, que abrirá su archivo gitconfig. Agregue su nombre y correo electrónico y cierre esto.
+```{r}
+library(usethis)
+edit_git_config()
+```
+
+Se abrirá .giconfig
+```{r eval=FALSE}
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge= git-lfs smudge -- %f
+  process= git-lfs filter-process
+  required=true
+[user]
+  name= "Ronaldo Anticona Guillen"
+  email= "ronaldoag1007@gmail.com"
+```
+
+### Inicializar un repositorio de Git
+Ahora que ha instalado y configurado Git, puede usarlo localmente. La función use_git() agregará un repositorio de Git (a menudo denominado "repositorio") a un proyecto de RStudio existente. Aquí crearé un nuevo proyecto y luego inicializaré un repositorio de Git.
+
+A través de File>New Project / marker Create a git repository
+```{r}
+use_git()
+```
+
+
+
+
+
+
