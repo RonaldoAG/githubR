@@ -150,7 +150,8 @@ Crea un token de acceso personal (PAT) en GitHub usando la función create_githu
 
 debemos almacenarlo para que RStudio pueda acceder a él y conectarse a su cuenta de GitHub. Mediante la función gitcreds_set(), ingresarás tu nombre de usuario de GitHub y el token de acceso personal como tu contraseña (NO tu contraseña de GitHub).
 
-```{r}
+More: gitcreds  https://github.com/r-lib/gitcreds
+```{r, echo=TRUE,eval=FALSE}
 #install.packages("gitcreds")
 library(gitcreds)
 gitcreds_set()
