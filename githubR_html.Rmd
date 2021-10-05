@@ -157,3 +157,32 @@ library(gitcreds)
 gitcreds_set()
 ```
 
+### Conectar con repositorio de GitHub
+
+La idea básica es que configure los proyectos que cree en RStudio con repositorios GitHub asociados. Cada proyecto de RStudio vive en un solo repositorio de GitHub.
+
+A veces, ya tiene un proyecto localmente y desea obtenerlo en GitHub. Para hacer esto, primero deberá usar la función use_git() de usethis, como hicimos anteriormente. Luego, puede usar la función use_github(), que creará un repositorio de GitHub y lo conectará a su proyecto RStudio actual.
+
+```{r}
+library(usethis)
+usethis::use_github()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
